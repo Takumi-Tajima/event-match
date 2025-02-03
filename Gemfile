@@ -23,10 +23,16 @@ group :development, :test do
   gem 'brakeman', require: false
   gem 'debug'
   gem 'haml_lint'
+  gem 'rspec-rails'
   gem 'sgcop', github: 'SonicGarden/sgcop', branch: 'main'
 end
 
 group :development do
   gem 'html2haml'
   gem 'web-console'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
