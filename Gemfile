@@ -9,12 +9,14 @@ gem 'jsbundling-rails'
 gem 'pg'
 gem 'propshaft'
 gem 'puma'
-gem 'stimulus-rails'
-gem 'turbo-rails'
-
 gem 'solid_cable'
 gem 'solid_cache'
 gem 'solid_queue'
+gem 'stimulus-rails'
+gem 'turbo-rails'
+
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'bootsnap', require: false
 gem 'kamal', require: false
