@@ -1,0 +1,6 @@
+%h1.fs-2 Event Match
+
+- if user_signed_in?
+  = button_to 'ログアウト', '/logout', method: :post, data: { turbo: false }
+- else
+  = button_to 'ログイン', '/auth/google_oauth2', method: :post, data: { turbo: false }
