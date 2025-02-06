@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
     log_in user if user
-    redirect_to root_path
+    user.fetch_events_from_google_calendar
+    redirect_to events_path
   end
 
   def destroy
