@@ -25,6 +25,14 @@ class User < ApplicationRecord
     )
   end
 
+  def google_calendar_service
+    client = google_client_secrets.to_authorization
+    client.fetch_access_token!
+    service = Google::Apis::CalendarV3::CalendarService.new
+    service.authorization = client
+    service
+  end
+
   def fetch_events_from_google_calendar
     response = GoogleCustomSearchApi.search('ウォーカーイベント 岡山県 イベント')
     events_data = parse_events(response)
@@ -54,5 +62,21 @@ class User < ApplicationRecord
         url: event['url'],
       }
     end
+  end
+
+  def create_event(summary, start_time, end_time)
+    calendar_service = google_calendar_service
+    event = Google::Apis::CalendarV3::Event.new(
+      summary: summary,
+      start: {
+        date: start_time,
+        time_zone: 'Asia/Tokyo',
+      },
+      end: {
+        date: end_time,
+        time_zone: 'Asia/Tokyo',
+      }
+    )
+    calendar_service.insert_event('primary', event)
   end
 end
