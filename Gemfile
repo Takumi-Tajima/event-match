@@ -15,6 +15,7 @@ gem 'solid_queue'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 
+gem 'google_custom_search_api'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
