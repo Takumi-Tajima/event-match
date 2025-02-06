@@ -116,6 +116,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
+    csv (3.3.2)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -139,6 +140,9 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google_custom_search_api (2.0.0)
+      addressable
+      httparty
     haml (6.3.0)
       temple (>= 0.8.2)
       thor
@@ -160,6 +164,10 @@ GEM
       haml (>= 4.0)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
+    httparty (0.22.0)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     io-console (0.8.0)
@@ -466,6 +474,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  google_custom_search_api
   haml-rails
   haml_lint
   html2haml
