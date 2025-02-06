@@ -11,4 +11,15 @@ class User < ApplicationRecord
       user.refresh_token = refresh_token
     end
   end
+
+  def google_client_secrets
+    Google::APIClient::ClientSecrets.new(
+      web: {
+        access_token: token,
+        refresh_token: refresh_token,
+        client_id: Rails.application.credentials.google.client_id,
+        client_secret: Rails.application.credentials.google.client_secret,
+      }
+    )
+  end
 end
