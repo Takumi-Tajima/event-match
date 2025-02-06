@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :events, only: %i[index]
+  resources :events, only: %i[index update]
   resource :calendar, only: %i[create]
 
   get 'up' => 'rails/health#show', as: :rails_health_check
