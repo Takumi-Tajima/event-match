@@ -26,27 +26,32 @@ class User < ApplicationRecord
   end
 
   def fetch_events_from_google_calendar
-    response = GoogleCustomSearchApi.search('岡山県 イベント')
+    response = GoogleCustomSearchApi.search('ウォーカーイベント 岡山県 イベント')
     events_data = parse_events(response)
 
     events_data.each do |event_data|
-      events.create!(
+      next if event_data[:end_date] < Time.zone.now
+
+      events.find_or_create_by!(
         name: event_data[:name],
-        start_time: event_data[:start_time],
-        end_time: event_data[:end_time],
+        description: event_data[:description],
+        start_date: event_data[:start_date],
+        end_date: event_data[:end_date],
+        image: event_data[:image],
         url: event_data[:url]
       )
     end
   end
 
   def parse_events(response)
-    response['items'].map do |item|
+    response['items'].filter_map { |item| item['pagemap']['Event']&.first }.map do |event|
       {
-        name: item['title'],
-        date: item.dig('pagemap', 'Event', 0, 'startDate'),
-        start_time: item.dig('pagemap', 'Event', 0, 'startDate') || item['snippet'],
-        end_time: item.dig('pagemap', 'Event', 0, 'endDate'),
-        url: item['link'],
+        name: event['name'],
+        description: event['description'],
+        start_date: event['startDate'],
+        end_date: event['endDate'],
+        image: event['image'],
+        url: event['url'],
       }
     end
   end
