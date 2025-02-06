@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
   resources :events, only: %i[index]
+  resource :calendar, only: %i[create]
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 end
