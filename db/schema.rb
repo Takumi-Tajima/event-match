@@ -15,11 +15,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_06_101603) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.string "url"
+    t.string "name", default: "", null: false
+    t.string "description", default: "", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.string "image", default: "", null: false
+    t.string "url", default: "", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
