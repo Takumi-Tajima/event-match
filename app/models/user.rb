@@ -22,4 +22,8 @@ class User < ApplicationRecord
       }
     )
   end
+
+  def events_fetch_from_google_calendar
+    GoogleCustomSearchApi.search('岡山県 イベント')
+  end
 end
