@@ -20,8 +20,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_06_101603) do
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "url"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,4 +34,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_06_101603) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "events", "users"
 end
