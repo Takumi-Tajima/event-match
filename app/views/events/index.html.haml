@@ -14,5 +14,5 @@
           .d-flex.justify-content-around.mt-5
             = button_tag type: 'button', class: 'btn btn-outline-danger' do
               %i.bi.bi-hand-thumbs-down-fill | 興味ない
-            = button_to calendar_path(summary: @event.name, start_date: @event.start_date, end_date: @event.end_date), method: :post, data: { turbo: false }, class: 'btn btn-outline-success' do
+            = button_to calendar_path(summary: @event.name, start_date: @event.start_date, end_date: @event.end_date, url: @event.url), method: :post, data: { turbo: false }, class: 'btn btn-outline-success' do
               %i.bi.bi-hand-thumbs-up-fill | いいね!

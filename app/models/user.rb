@@ -1,3 +1,5 @@
+require 'google/apis/calendar_v3'
+
 class User < ApplicationRecord
   has_many :events, dependent: :destroy
 
@@ -64,16 +66,17 @@ class User < ApplicationRecord
     end
   end
 
-  def create_event(summary, start_time, end_time)
+  def create_event(summary, start_date, end_date, url)
     calendar_service = google_calendar_service
     event = Google::Apis::CalendarV3::Event.new(
       summary: summary,
+      description: url,
       start: {
-        date: start_time,
+        date: start_date.to_date.to_s,
         time_zone: 'Asia/Tokyo',
       },
       end: {
-        date: end_time,
+        date: end_date.to_date.to_s,
         time_zone: 'Asia/Tokyo',
       }
     )
