@@ -1,18 +1,21 @@
 .container
   .row.justify-content-center
     .col-md-6.col-lg-4
-      .card.shadow-sm
-        .card-body
-          %h2.card-title.text-center= @event.name
-          .card-text.text-muted.text-center.mb-2
-            %small 開始日: #{ l @event.start_date }
-            %br/
-            %small 終了日: #{ l @event.end_date }
-          .card-text.mb-3= truncate(@event.description, length: 15)
-          .mb-5= image_tag @event.image, class: "img-fluid rounded"
-          .d-grid= link_to '詳細を見る', @event.url, class: "btn btn-primary"
-          .d-flex.justify-content-around.mt-5
-            = button_tag type: 'button', class: 'btn btn-outline-danger' do
-              %i.bi.bi-hand-thumbs-down-fill | 興味ない
-            = button_to calendar_path(summary: @event.name, start_date: @event.start_date, end_date: @event.end_date, url: @event.url), method: :post, data: { turbo: false }, class: 'btn btn-outline-success' do
-              %i.bi.bi-hand-thumbs-up-fill | いいね!
+      - if @event
+        .card.shadow-sm
+          .card-body
+            %h2.card-title.text-center= @event.name
+            .card-text.text-muted.text-center.mb-2
+              %small 開始日: #{ l @event.start_date }
+              %br/
+              %small 終了日: #{ l @event.end_date }
+            .card-text.mb-3= truncate(@event.description, length: 15)
+            .mb-5= image_tag @event.image, class: "img-fluid rounded"
+            .d-grid= link_to '詳細を見る', @event.url, class: "btn btn-primary"
+            .d-flex.justify-content-around.mt-5
+              = button_tag type: 'button', class: 'btn btn-outline-danger' do
+                %i.bi.bi-hand-thumbs-down-fill | 興味ない
+              = button_to calendar_path(summary: @event.name, start_date: @event.start_date, end_date: @event.end_date, url: @event.url, id: @event.id), method: :post, data: { turbo: false }, class: 'btn btn-outline-success' do
+                %i.bi.bi-hand-thumbs-up-fill | いいね!
+      - else
+        %h2.card-title.text-center.mt-5 現在イベントはありません
