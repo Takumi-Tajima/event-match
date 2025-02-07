@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :events, only: %i[index update]
   resource :calendar, only: %i[create]
+  resource :location_authenticate, only: %i[new create]
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 end
