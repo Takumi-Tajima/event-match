@@ -4,6 +4,6 @@ class LocationAuthenticatesController < ApplicationController
 
   def create
     current_user.update_location!(params[:lat], params[:lng])
-    redrect_to events_url
+    redirect_to events_url
   end
 end
