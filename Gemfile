@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails'
 
 gem 'cssbundling-rails'
+gem 'geocoder'
 gem 'haml-rails'
 gem 'jbuilder'
 gem 'jsbundling-rails'
