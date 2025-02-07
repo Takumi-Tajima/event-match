@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
     log_in user if user
     user.fetch_events_from_google_calendar
-    redirect_to events_path
+    redirect_to new_location_authenticate_path
   end
 
   def destroy
