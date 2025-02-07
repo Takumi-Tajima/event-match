@@ -1,0 +1,26 @@
+:javascript
+  document.addEventListener('DOMContentLoaded', () => {
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(({ coords }) => {
+          const form = document.createElement('form');
+          form.method = 'POST';
+          form.action = '/location_authenticate';
+          form.innerHTML = `
+            <input type="hidden" name="location[latitude]" value="${coords.latitude}">
+            <input type="hidden" name="location[longitude]" value="${coords.longitude}">
+            <input type="hidden" name="authenticity_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
+          `;
+          document.body.appendChild(form);
+          form.submit();
+        });
+      } else {
+        alert("お使いのブラウザは位置情報に対応していません");
+      }
+    };
+
+    document.getElementById('get-location-button').addEventListener('click', getLocation);
+  });
+
+%h1 location_authenticates
+%button#get-location-button.btn.btn-primary 位置情報を許可しますがよろしいですか？
