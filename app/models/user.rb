@@ -17,6 +17,22 @@ class User < ApplicationRecord
     end
   end
 
+  def update_location(location_params)
+    lat = location_params[:latitude]
+    lon = location_params[:longitude]
+    location = fetch_location_from_geolocation_api(lat, lon)
+    update!(location: location) if location
+  end
+
+  def fetch_location_from_geolocation_api(lat, lon)
+    result = Geocoder.search([lat, lon]).first
+    return unless result
+
+    address_components = result.data['address_components']
+    state_component = address_components.find { |component| component['types'].include?('administrative_area_level_1') }
+    state_component ? state_component['long_name'] : nil
+  end
+
   def google_client_secrets
     Google::APIClient::ClientSecrets.new(
       web: {
