@@ -22,5 +22,8 @@
     document.getElementById('get-location-button').addEventListener('click', getLocation);
   });
 
-%h1 location_authenticates
-%button#get-location-button.btn.btn-primary 位置情報を許可しますがよろしいですか？
+%h1.text-center 位置情報認証
+.container.mt-5
+  .row
+    .col-md-5.d-flex.justify-content-center
+      %button#get-location-button.btn.btn-primary 位置情報を許可しますがよろしいですか？
