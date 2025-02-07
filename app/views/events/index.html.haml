@@ -1,18 +1,20 @@
-.container
+.container{'data-controller': 'swipe'}
   .row.justify-content-center
     .col-md-6.col-lg-4
-      - if @event
-        .card.shadow-sm
-          = image_tag @event.image, class: "", style: 'width: 100%; height: 300px; object-fit: cover;'
-          .card-body
-            %h2.card-title= @event.name
-            .d-flex.card-text.text-muted.mb-3
-              #{ l @event.start_date }〜#{ l @event.end_date }
-            .d-grid= link_to '詳細を見る', @event.url, class: "btn btn-primary"
-            .d-flex.justify-content-around.mt-5
-              = button_to event_path(@event, event: { checked: true}), method: :patch, data: { turbo: false }, class: 'btn btn-outline-danger' do
-                %i.bi.bi-hand-thumbs-down-fill | 興味ない
-              = button_to calendar_path(summary: @event.name, start_date: @event.start_date, end_date: @event.end_date, url: @event.url, id: @event.id), method: :post, data: { turbo: false }, class: 'btn btn-outline-success' do
-                %i.bi.bi-hand-thumbs-up-fill | いいね!
-      - else
-        %h2.card-title.text-center.mt-5 現在イベントはありません
+      .swipe-card__container{'data-swipe-target': 'container', 'data-action': 'touchstart->swipe#startTouch touchmove->swipe#moveTouch touchend->swipe#endTouch mousedown->swipe#startDrag'}
+        - if @event
+          .swipe-card{'data-event-id' => @event.id, 'data-swipe-target': 'card'}
+            .card.shadow-sm
+              = image_tag @event.image, class: 'card-img-top', style: 'height: 300px; object-fit: cover;', draggable: 'false'
+              .card-body
+                %h2.card-title= @event.name
+                .d-flex.card-text.text-muted.mb-3
+                  #{ l @event.start_date }〜#{ l @event.end_date }
+                .d-flex.justify-content-around.mt-3
+                  = button_to event_path(@event, event: { checked: true}), method: :patch, data: { turbo: false }, class: 'btn btn-outline-danger swipe-button', id: 'dislike-button' do
+                    %i.bi.bi-hand-thumbs-down-fill | 興味ない
+                  = button_to calendar_path(summary: @event.name, start_date: @event.start_date, end_date: @event.end_date, url: @event.url, id: @event.id), method: :post, data: { turbo: false }, class: 'btn btn-outline-success swipe-button', id: 'like-button' do
+                    %i.bi.bi-hand-thumbs-up-fill | いいね!
+              .swipe-card__feedback{'data-swipe-target': 'feedback'}
+        - else
+          %h2.card-title.text-center.mt-5 現在イベントはありません

@@ -1,0 +1,27 @@
+.swipe-card__container {
+  position: relative;
+  min-height: 400px;
+}
+
+.swipe-card {
+  position: relative;
+  touch-action: none;
+  transition: transform 0.3s ease;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  .swipe-card__feedback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+}
