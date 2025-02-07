@@ -1,3 +1,14 @@
+$primary: #d85b52;
+
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import "swipe-card";
+
+.logo {
+  max-width: 300px;
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgba(216, 91, 82, 0.17);
+}

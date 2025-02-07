@@ -2,7 +2,7 @@
 %html
   %head
     %meta{ :content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type' }/
-    %title= content_for(:title) || 'Event Match'
+    %title= content_for(:title) || 'Attendar'
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }/
     %meta{ content: 'yes', name: 'apple-mobile-web-app-capable' }/
     %meta{ content: 'yes', name: 'mobile-web-app-capable' }/
@@ -16,6 +16,6 @@
     = javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module'
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
   %body
-    .container
-    %h1.fs-2.text-center.mt-5 Event Match
+    .text-center
+      = image_tag 'logo.png', class: 'logo'
     .mt-5= yield

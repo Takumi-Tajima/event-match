@@ -22,8 +22,17 @@
     document.getElementById('get-location-button').addEventListener('click', getLocation);
   });
 
-%h1.text-center 位置情報認証
-.container.mt-5
-  .row
-    .col-md-5.d-flex.justify-content-center
-      %button#get-location-button.btn.btn-primary 位置情報を許可しますがよろしいですか？
+
+.text-center.mt-5{ style: 'max-width: 400px; margin: 0 auto;' }
+  .card
+    .card-header
+      初期設定
+    .card-body
+      .h5.mb-3{style: 'line-height: 1.5;'}
+        Attendarは位置情報を利用します
+        %br
+        位置情報からあなたにおすすめのイベントをアテンドします。
+      .h5{style: 'line-height: 1.5;'}
+        以下のボタンをタップして、位置情報を許可してください
+    .card-footer
+      %button#get-location-button.btn.btn-primary.text-white 位置情報を許可する

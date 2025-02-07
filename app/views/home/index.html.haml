@@ -1,5 +1,17 @@
-.d-grid.text-center
-  - if user_signed_in?
+- if user_signed_in?
+  .d-grid.text-center
     = button_to 'ログアウト', '/logout', method: :post, data: { turbo: false }, class: 'btn btn-danger btn-lg'
-  - else
-    = button_to 'ログイン', '/auth/google_oauth2', method: :post, data: { turbo: false }, class: 'btn btn-primary btn-lg'
+- else
+  .text-center.mt-5{ style: 'max-width: 400px; margin: 0 auto;' }
+    .card
+      .card-header
+        About
+      .card-body
+        .h5.mb-3{style: 'line-height: 1.5;'}
+          Attendarは普段お出かけしないあなたに近場のイベントをおすすめします。
+          %br
+          スワイプするだけで簡単に興味のあるイベントをカレンダーに登録することができます。
+        .h5{style: 'line-height: 1.5;'}
+          AttenderはGoogleアカウントでログインすることができます。
+      .card-footer
+        = button_to 'Googleアカウントでログイン', '/auth/google_oauth2', method: :post, data: { turbo: false }, class: 'btn btn-primary btn-lg text-white'
